@@ -43,7 +43,7 @@ exports.initialize = function(pathsObj) {
 
 exports.readListOfUrls = function(callback) {
   
-  fs.readFile(exports.paths.list, 'UTF-8', function(err,data) {
+  return fs.readFile(exports.paths.list, 'UTF-8', function(err,data) {
     var arr = data.split('\n');
       // console.log('arr[i]:',arr[i], 'data',data)
     return callback(arr);
@@ -51,17 +51,17 @@ exports.readListOfUrls = function(callback) {
   });
 };
 
-exports.isUrlInList = function(targetUrl) {   // will URL contain just path name or full path?
+exports.isUrlInList = function(targetUrl, callback) {   // will URL contain just path name or full path?
 
-  exports.readListOfUrls(function(arr) {
+  return exports.readListOfUrls(function(arr) {
     var contains = false;
     arr.forEach(function(value, index) {
       if (value === targetUrl) { contains = true; }
     });
     console.log('contains is:', contains);
+    callback(contains);
     return contains;
   }); 
-
 };
 
 exports.addUrlToList = function() {
