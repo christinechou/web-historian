@@ -33,13 +33,13 @@ var actions = {
   }
 };
 
-var getHTMLContent = function(res, pathName) {
+var getHTMLContent = function(response, pathName) {
   fs.readFile(pathName, 'utf-8', function (err, data) {
     if (err) {
-      res.writeHead(404, exports.headers);
+      response.writeHead(404, exports.headers);
       // return console.log(err);
     }
-    res.end(data);
+    response.end(data);
   });
 };
 
