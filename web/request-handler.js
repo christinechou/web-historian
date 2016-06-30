@@ -3,6 +3,7 @@ var archive = require('../helpers/archive-helpers');
 var httpHelpers = require('../web/http-helpers');
 // require more modules/folders here!
 var fs = require('fs');
+var url = require('url'); // Source: http://www.colome.org/get-or-post-variables-in-node-js-server/
 
 var objectIdCounter = 1;
 var messages = [
@@ -32,24 +33,30 @@ var actions = {
   }
 };
 
-var getHTMLContent = function(res) {
-  fs.readFile(__dirname + '/public/index.html', 'utf-8', function (err, data) {
+var getHTMLContent = function(res, pathName) {
+  fs.readFile(pathName, 'utf-8', function (err, data) {
     if (err) {
       return console.log(err);
     }
-    // console.log('html data:', data);
     res.end(data);
   });
 };
 
 exports.handleRequest = function (req, res) {
-  console.log('request handling method:', req.method);
-  console.log(req)
+  var pathname = url.parse(req.url).pathname;
+  var fullPath = '';
+  if (pathname !== '/') {
+    console.log('we have a path!');
+    fullPath = archive.paths.archivedSites + pathname;
+  } else {
+    console.log('directory is:', __dirname);
+    fullPath = __dirname + '/public/index.html';
+  }
+
+  // console.log(fullPath);
   // httpHelpers.makeActionHandler(actions, req, res);
   // console.log('content? sure hope so.', getHTMLContent());
-  getHTMLContent(res);
-  // console.log(getHTMLContent());
-  // console.log('-------------', typeof html);
+  getHTMLContent(res, fullPath);
 
   // + add headers
   // res.end();
