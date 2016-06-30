@@ -39,17 +39,27 @@ exports.initialize = function(pathsObj) {
 // http://stackoverflow.com/questions/34719693/node-js-fs-accesssync-set-global-variable-path-fail/35965950
 // http://stackoverflow.com/questions/34719693/node-js-fs-accesssync-set-global-variable-path-fail
 // https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=fs.readfile+get+specific+element
+
+
 exports.readListOfUrls = function() {
+  // 2 loop through each site/url list
 };
 
 exports.isUrlInList = function() {
+  // 3 search sites.text to see if file exists in list
 };
 
 exports.addUrlToList = function() {
+  //4 fs.openSync
+  // fs.writeSync || writeFileSync;
+  // fs.append or addTo?
+  //
 };
 
 exports.isUrlArchived = function() {
+  // 1 search to see if file path exists in archives
 };
 
 exports.downloadUrls = function() {
+  // 4? get 
 };

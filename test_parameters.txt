@@ -1,1 +1,84 @@
-test_parameters.txt
+ server
+    GET /
+      1) should return the content of index.html
+      2) should return the content of a website from the archive
+      3) Should 404 when asked for a nonexistent file
+      4) should append submitted sites to 'sites.txt'
+
+  archive helpers
+    #readListOfUrls
+      5) should read urls from sites.txt
+    #isUrlInList
+      6) should check if a url is in the list
+    #addUrlToList
+      7) should add a url to the list
+    #isUrlArchived
+      8) should check if a url is archived
+    #downloadUrls
+      9) should download all pending urls in the list
+
+-------------------------------------------------------------------
+
+  1) server GET / should return the content of index.html:
+     Error: expected body '/Users/student/Desktop/webHistorian/test/testdata/sites.txt' to match /<input/
+      at error (node_modules/supertest/lib/test.js:265:13)
+      at Test._assertBody (node_modules/supertest/lib/test.js:188:18)
+      at Test._assertFunction (node_modules/supertest/lib/test.js:247:11)
+      at Test.assert (node_modules/supertest/lib/test.js:148:18)
+      at Server.assert (node_modules/supertest/lib/test.js:127:12)
+      at emitCloseNT (net.js:1521:8)
+
+  2) server archived websites GET should return the content of a website from the archive:
+     Error: expected body '/Users/student/Desktop/webHistorian/test/testdata/sites.txt' to match /google/
+      at error (node_modules/supertest/lib/test.js:265:13)
+      at Test._assertBody (node_modules/supertest/lib/test.js:188:18)
+      at Test._assertFunction (node_modules/supertest/lib/test.js:247:11)
+      at Test.assert (node_modules/supertest/lib/test.js:148:18)
+      at Server.assert (node_modules/supertest/lib/test.js:127:12)
+      at emitCloseNT (net.js:1521:8)
+
+  3) server archived websites GET Should 404 when asked for a nonexistent file:
+     Error: expected 404 "Not Found", got 200 "OK"
+      at Test._assertStatus (node_modules/supertest/lib/test.js:232:12)
+      at Test._assertFunction (node_modules/supertest/lib/test.js:247:11)
+      at Test.assert (node_modules/supertest/lib/test.js:148:18)
+      at Server.assert (node_modules/supertest/lib/test.js:127:12)
+      at emitCloseNT (net.js:1521:8)
+
+  4) server archived websites POST should append submitted sites to 'sites.txt':
+     Error: expected 302 "Found", got 200 "OK"
+      at Test._assertStatus (node_modules/supertest/lib/test.js:232:12)
+      at Test._assertFunction (node_modules/supertest/lib/test.js:247:11)
+      at Test.assert (node_modules/supertest/lib/test.js:148:18)
+      at Server.assert (node_modules/supertest/lib/test.js:127:12)
+      at emitCloseNT (net.js:1521:8)
+
+  5) archive helpers #readListOfUrls should read urls from sites.txt:
+     Error: timeout of 2000ms exceeded. Ensure the done() callback is being called in this test.
+  
+
+  6) archive helpers #isUrlInList should check if a url is in the list:
+     Error: timeout of 2000ms exceeded. Ensure the done() callback is being called in this test.
+  
+
+  7) archive helpers #addUrlToList should add a url to the list:
+     Error: timeout of 2000ms exceeded. Ensure the done() callback is being called in this test.
+  
+
+  8) archive helpers #isUrlArchived should check if a url is archived:
+     Error: timeout of 2000ms exceeded. Ensure the done() callback is being called in this test.
+  
+
+  9) archive helpers #downloadUrls should download all pending urls in the list:
+
+      Uncaught AssertionError: expected [ 'www.example.com' ] to deeply equal [ 'www.example.com', 'www.google.com' ]
+      + expected - actual
+
+       [
+         "www.example.com"
+      +  "www.google.com"
+       ]
+      
+      at Assertion.assertEqual (node_modules/chai/lib/chai/core/assertions.js:485:19)
+      at Assertion.ctx.(anonymous function) [as equal] (node_modules/chai/lib/chai/utils/addMethod.js:41:25)
+      at null._onTimeout (test/test.js:152:69)
