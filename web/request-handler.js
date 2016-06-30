@@ -32,24 +32,27 @@ var actions = {
   }
 };
 
-var getHTMLContent = function() {
-  var content = '';
+var getHTMLContent = function(res) {
   fs.readFile(__dirname + '/public/index.html', 'utf-8', function (err, data) {
     if (err) {
       return console.log(err);
     }
-    console.log(data); 
-    content = data;
+    // console.log('html data:', data);
+    res.end(data);
   });
-  return content;
 };
 
 exports.handleRequest = function (req, res) {
   console.log('request handling method:', req.method);
+  console.log(req)
   // httpHelpers.makeActionHandler(actions, req, res);
-  var htmlContent = getHTMLContent();
-console.log('content? sure hope so.', htmlContent);
-  res.end(htmlContent);
+  // console.log('content? sure hope so.', getHTMLContent());
+  getHTMLContent(res);
+  // console.log(getHTMLContent());
+  // console.log('-------------', typeof html);
+
+  // + add headers
+  // res.end();
 };
 
 

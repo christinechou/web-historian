@@ -9,6 +9,16 @@ var _ = require('underscore');
  * customize it in any way you wish.
  */
 
+
+// Check archive for website
+  // if it exists:
+    // return html from file
+  // otherwise
+    // send client 'loading html' message
+    // add to worker queue
+      // Worker creates a new file for it
+      // Add the html  
+
 exports.paths = {
   siteAssets: path.join(__dirname, '../web/public'),
   archivedSites: path.join(__dirname, '../archives/sites'),
@@ -25,6 +35,10 @@ exports.initialize = function(pathsObj) {
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
+
+// http://stackoverflow.com/questions/34719693/node-js-fs-accesssync-set-global-variable-path-fail/35965950
+// http://stackoverflow.com/questions/34719693/node-js-fs-accesssync-set-global-variable-path-fail
+// https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=fs.readfile+get+specific+element
 exports.readListOfUrls = function() {
 };
 
