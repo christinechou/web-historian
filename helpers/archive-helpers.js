@@ -41,12 +41,27 @@ exports.initialize = function(pathsObj) {
 // https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=fs.readfile+get+specific+element
 
 
-exports.readListOfUrls = function() {
-  // 2 loop through each site/url list
+exports.readListOfUrls = function(callback) {
+  
+  fs.readFile(exports.paths.list, 'UTF-8', function(err,data) {
+    var arr = data.split('\n');
+      // console.log('arr[i]:',arr[i], 'data',data)
+    return callback(arr);
+
+  });
 };
 
-exports.isUrlInList = function() {
-  // 3 search sites.text to see if file exists in list
+exports.isUrlInList = function(targetUrl) {   // will URL contain just path name or full path?
+
+  exports.readListOfUrls(function(arr) {
+    var contains = false;
+    arr.forEach(function(value, index) {
+      if (value === targetUrl) { contains = true; }
+    });
+    console.log('contains is:', contains);
+    return contains;
+  }); 
+
 };
 
 exports.addUrlToList = function() {

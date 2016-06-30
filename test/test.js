@@ -99,11 +99,13 @@ describe('archive helpers', function() {
 
       archive.isUrlInList('example1.com', function (exists) {
         expect(exists).to.be.true;
+        console.log('example1.com counter', counter);
         if (++counter === total) { done(); }
       });
 
       archive.isUrlInList('gibberish', function (exists) {
         expect(exists).to.be.false;
+        console.log('gibberish counter', counter);
         if (++counter === total) { done(); }
       });
     });
