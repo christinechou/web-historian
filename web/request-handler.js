@@ -36,7 +36,8 @@ var actions = {
 var getHTMLContent = function(res, pathName) {
   fs.readFile(pathName, 'utf-8', function (err, data) {
     if (err) {
-      return console.log(err);
+      res.writeHead(404, exports.headers);
+      // return console.log(err);
     }
     res.end(data);
   });
@@ -46,8 +47,7 @@ exports.handleRequest = function (req, res) {
   var pathname = url.parse(req.url).pathname;
   var fullPath = '';
   if (pathname !== '/') {
-    console.log('we have a path!');
-    fullPath = archive.paths.archivedSites + pathname;
+    fullPath = archive.paths.archivedSites + pathname;    
   } else {
     console.log('directory is:', __dirname);
     fullPath = __dirname + '/public/index.html';
