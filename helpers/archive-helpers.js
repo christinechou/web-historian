@@ -68,10 +68,23 @@ exports.addUrlToList = function(newUrl, callback) {
   });
 };
 
-exports.isUrlArchived = function() {
+exports.isUrlArchived = function(url, callback) {
   // 1 search to see if file path exists in archives
+  var fullPath = exports.paths.archivedSites + '/' + url;
+  fs.exists(fullPath, function(exists) {
+    return callback(exists);
+  });
 };
 
 exports.downloadUrls = function() {
   // 4? get 
 };
+
+
+
+
+
+
+
+
+
