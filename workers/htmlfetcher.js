@@ -14,21 +14,17 @@ var request = require('request');
         // add a file to sites with that information and name
 
 
-  setInterval(function() {
-    var 
-    for () {
-      
-    }
-  }, 300)
+//   setInterval(function() {
+//   }, 300)
 
 
-// https://github.com/request/request
+// // https://github.com/request/request
 
 
-  url = 'www.google.com';
-  request(url, function (error, response, body) {
-    // if (!error && response.statusCode === 200) {
-    if (!error) {
-      console.log(body); // Show the HTML for the Modulus homepage.
-    }
-  });
+//   url = 'www.google.com';
+//   request(url, function (error, response, body) {
+//     // if (!error && response.statusCode === 200) {
+//     if (!error) {
+//       console.log(body); // Show the HTML for the Modulus homepage.
+//     }
+//   });

@@ -18,15 +18,13 @@ var messages = [
 ];
 
 var actions = {
-  'GET': function(request, response) {
-    httpHelpers.sendResponse(response, {results: 'messages'});
+  'GET': function(request, response, fullPath) {
+    getHTMLContent(response, fullPath);
+    // httpHelpers.sendResponse(response, {results: 'messages'});
   },
   'POST': function(request, response) {
-    httpHelpers.collectData(request, function(message) {
-      message.objectId = ++objectIdCounter;
-      messages.push(message);
-      httpHelpers.sendResponse(response, {objectId: 'message.objectId'}, 201);
-    });
+    console.log('hello')
+
   },
   'OPTIONS': function(request, response) {
     httpHelpers.sendResponse(response, null);
@@ -37,26 +35,29 @@ var getHTMLContent = function(response, pathName) {
   fs.readFile(pathName, 'utf-8', function (err, data) {
     if (err) {
       response.writeHead(404, exports.headers);
-      // return console.log(err);
     }
     response.end(data);
   });
 };
 
 exports.handleRequest = function (req, res) {
+
+  //grabbing url path
   var pathname = url.parse(req.url).pathname;
   var fullPath = '';
   if (pathname !== '/') {
     fullPath = archive.paths.archivedSites + pathname;    
   } else {
-    console.log('directory is:', __dirname);
     fullPath = __dirname + '/public/index.html';
   }
 
-  // console.log(fullPath);
+  
+
+  actions[req.method](req, res, fullPath);
+
   // httpHelpers.makeActionHandler(actions, req, res);
-  // console.log('content? sure hope so.', getHTMLContent());
-  getHTMLContent(res, fullPath);
+
+  //grabs and posts html contents of url page
 
   // + add headers
   // res.end();
